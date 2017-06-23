@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.netcracker.migalin.entity.BooksEntity" table="books" schema="library">
+        <id name="idbooks">
+            <column name="idbooks" sql-type="int(11)"/>
+        </id>
+        <property name="autor">
+            <column name="autor" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="title">
+            <column name="title" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="year">
+            <column name="year" sql-type="varchar(30)" length="30" not-null="true"/>
+        </property>
+        <many-to-one name="publisher_id" class="ru.netcracker.migalin.entity.PublishersEntity">
+            <column name="publisher_id" not-null="false"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
