@@ -65,15 +65,18 @@ public class BookDAOImpl implements BookDAO {
     }
 
     public List<BooksEntity> getAllBooks() {
-        List<BooksEntity> books = null;
         Session session = HibernateUtil.getSession();
+        List<BooksEntity> books = null;
         try {
-            books = session.createQuery("select b from BooksEntity b join b.publisher_id").list();
+            session.beginTransaction();
+            books = session.createQuery("from BooksEntity b join fetch b.publisher_id").list();
+            session.getTransaction().commit();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
+
         return books;
     }
 

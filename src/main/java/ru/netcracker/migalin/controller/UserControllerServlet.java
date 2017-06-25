@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/query"})
+@WebServlet(name = "RegisterServlet", urlPatterns = {"/list"})
 public class UserControllerServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,6 +21,9 @@ public class UserControllerServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		BookDAOImpl bookDAO = new BookDAOImpl();
+        List<BooksEntity> allBooks = bookDAO.getAllBooks();
+        req.setAttribute("books",allBooks);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 

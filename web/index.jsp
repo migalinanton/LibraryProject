@@ -1,59 +1,83 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 19.06.2017
-  Time: 17:59
-  To change this template use File | Settings | File Templates.
---%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Date"%>
-<%@page import="ru.netcracker.migalin.DAO.BookDAOImpl"%>
-<%@ page import="ru.netcracker.migalin.entity.BooksEntity" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/style.css"/>
-  <title>Библиотека</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Библиотека</title>
 </head>
 <body>
-  <div id="container">
-      <form id="data" action="query" method="post">
-          <p><input placeholder="Текст для поиска" name="search">
-              <button type="submit" form="data" value="search">Искать</button></p>
-          <button type="submit" form="data" value="add">Добавить</button>
-          <button type="submit" form="data" value="delete">Удалить</button>
-          <button type="submit" form="data" value="update">Изменить</button>
-      </form>
-      <h2>Список книг</h2>
-    <table>
-      <thead>
-      <tr>
+<h1>Записи</h1>
+<c:url var="editImgUrl" value="/resources/img/edit.png" />
+<c:url var="deleteImgUrl" value="/resources/img/delete.png" />
+<c:url var="addUrl" value="/resources/img/add.png" />
+<table style="border: 1px solid; width: 100%; text-align:center">
+    <thead style="background:#d3dce3">
+    <tr>
+        <th>Id</th>
         <th>Автор</th>
         <th>Название</th>
-        <th>Год</th>
-        <th>Издательство</th>
-        <th>URL Издательства</th>
-      </tr>
-      </thead>
-      <tbody>
-        <%
-            BookDAOImpl bookDAO = new BookDAOImpl();
-            List<BooksEntity> list = bookDAO.getAllBooks();
-            for (BooksEntity booksEntity : list) {
-                 %>
-      <tr>
-        <td><%=booksEntity.getAutor()%></td>
-        <td><%=booksEntity.getTitle()%></td>
-        <td><%=booksEntity.getYear()%></td>
-        <td><%=booksEntity.getPublisher_id().getFullname()%></td>
-          <td><%=booksEntity.getPublisher_id().getUrl()%></td>
-      </tr>
-        <%}%>
-      <tbody>
-    </table>
-    <br/>
-  </div>
+        <th>Год издания</th>
+        <th colspan="2"></th>
+        <th>Назавание</th>
+        <th>URL</th>
+        <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody style="background:#ccc">
+    <c:forEach items="${persons}" var="person">
+        <c:url var="editUrl" value="edit?id=${person.id}" />
+        <c:url var="deleteUrl" value="delete?id=${person.id}" />
+
+        <c:if test="${!empty person.creditCards}">
+            <c:forEach items="${person.creditCards}" var="creditCard">
+                <tr>
+                    <td><c:out value="${person.id}" /></td>
+                    <td><c:out value="${person.firstName}" /></td>
+                    <td><c:out value="${person.lastName}" /></td>
+                    <td><c:out value="${person.money}" /></td>
+                    <td><a href="${editUrl}"><img src="${editImgUrl}"></img></a></td>
+                    <td><a href="${deleteUrl}"><img src="${deleteImgUrl}"></img></a></td>
+
+                    <td><c:out value="${creditCard.type}" /></td>
+                    <td><c:out value="${creditCard.number}" /></td>
+                    <c:url var="addCcUrl" value="add?id=${person.id}" />
+                    <c:url var="editCcUrl" value="edit?pid=${person.id}&cid=${creditCard.id}" />
+                    <c:url var="deleteCcUrl" value="delete?id=${creditCard.id}" />
+                    <td><a href="${addCcUrl}">+</a></td>
+                    <td><a href="${editCcUrl}"><img src="${editImgUrl}"></img></a></td>
+                    <td><a href="${deleteCcUrl}"><img src="${deleteImgUrl}"></img></a></td>
+                </tr>
+            </c:forEach>
+        </c:if>
+
+        <c:if test="${empty person.creditCards}">
+            <tr>
+                <td><c:out value="${person.id}" /></td>
+                <td><c:out value="${person.firstName}" /></td>
+                <td><c:out value="${person.lastName}" /></td>
+                <td><c:out value="${person.money}" /></td>
+                <td><a href="${editUrl}"><img src="${editImgUrl}"></img></a></td>
+                <td><a href="${deleteUrl}"><img src="${deleteImgUrl}"></img></a></td>
+
+                <td>N/A</td>
+                <td>N/A</td>
+                <c:url var="addCcUrl" value="add?id=${person.id}" />
+                <td><a href="${addCcUrl}">+</a></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </c:if>
+
+    </c:forEach>
+    </tbody>
+</table>
+
+<c:if test="${empty persons}">
+    No records found.
+</c:if>
+
+<p><a href="${addUrl}">Create new record</a></p>
+
 </body>
 </html>
