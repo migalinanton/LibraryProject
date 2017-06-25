@@ -41,7 +41,7 @@
 
                     <td><c:out value="${books.publisher_id.fullname}" /></td>
                     <td><c:out value="${books.publisher_id.url}" /></td>
-                    <c:url var="addCcUrl" value="add?id=${books.idbooks}" />
+                    <c:url var="addCcUrl" value="/addBook?id=${books.idbooks}" />
                     <c:url var="editCcUrl" value="edit?pid=${books.idbooks}&cid=${books.publisher_id.idpublishers}" />
                     <c:url var="deleteCcUrl" value="delete?id=${books.publisher_id.idpublishers}" />
                     <td><a href="${addCcUrl}">+</a></td>
