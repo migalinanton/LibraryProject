@@ -5,13 +5,12 @@ import org.hibernate.Transaction;
 import ru.netcracker.migalin.entity.BooksEntity;
 import ru.netcracker.migalin.util.HibernateUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
+    Transaction transaction = null;
 
     public void addBook(BooksEntity book) {
-        Transaction transaction = null;
         Session session = HibernateUtil.getSession();
         try {
             transaction = session.beginTransaction();
@@ -28,7 +27,6 @@ public class BookDAOImpl implements BookDAO {
     }
 
     public void deleteBook(int bookid) {
-        Transaction transaction = null;
         Session session = HibernateUtil.getSession();
         try {
             transaction = session.beginTransaction();
@@ -46,7 +44,6 @@ public class BookDAOImpl implements BookDAO {
     }
 
     public void updateBook(BooksEntity book) {
-        Transaction transaction = null;
         Session session = HibernateUtil.getSession();
         try {
             transaction = session.beginTransaction();
@@ -78,20 +75,13 @@ public class BookDAOImpl implements BookDAO {
         return books;
     }
 
-    public BooksEntity getBookById(int bookid) {
+    public BooksEntity getBookById(int bookId) {
         BooksEntity book = null;
-        Transaction transaction = null;
         Session session = HibernateUtil.getSession();
         try {
             transaction = session.beginTransaction();
-            String queryString = "from BooksEntity where idbooks = :id";
-  //          Query query = session.createQuery(queryString);
-    //        query.setParameter("id", bookid);
-  //          book = (BooksEntity) query.uniqueResult();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
+            book = (BooksEntity) session.createQuery("from BooksEntity where idbooks = :id").setParameter("id",bookId).uniqueResult();
         } finally {
-            session.flush();
             session.close();
         }
         return book;

@@ -13,7 +13,8 @@ public class FindBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        String firstName = (String) request.getParameter("firstName");
+        String textToSearch = (String) request.getParameter("text");
+
 
     }
 }

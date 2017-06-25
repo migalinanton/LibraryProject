@@ -71,6 +71,16 @@ public class BooksEntity {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "BooksEntity{" +
+                "idbooks=" + idbooks +
+                ", autor='" + autor + '\'' +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
+
     public PublishersEntity getPublisher_id() {
         return publisher_id;
     }

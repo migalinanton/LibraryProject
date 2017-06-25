@@ -9,17 +9,17 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class PublisherDAOImplTest {
+    PublisherDAO publisherDAO = new PublisherDAOImpl();
+    PublishersEntity publishersEntity = new PublishersEntity();
     @Test
     public void getPublisherById() throws Exception {
-        PublisherDAO publisherDAO = new PublisherDAOImpl();
         PublishersEntity publisherById = publisherDAO.getPublisherById(10);
         System.out.println(publisherById);
     }
 
     @Test
     public void updatePublisher() throws Exception {
-        PublisherDAO publisherDAO = new PublisherDAOImpl();
-        PublishersEntity publishersEntity = new PublishersEntity();
+
         publishersEntity.setBooksEntities(null);
         publishersEntity.setFullname("12345");
         publishersEntity.setUrl("1255163");
@@ -29,13 +29,11 @@ public class PublisherDAOImplTest {
 
     @Test
     public void deletePublisher() throws Exception {
-        PublisherDAO publisherDAO = new PublisherDAOImpl();
         publisherDAO.deletePublisher(5);
     }
 
     @Test
     public void searchBooks() throws Exception {
-        PublisherDAO publisherDAO = new PublisherDAOImpl();
         publisherDAO.searchBooks("Дрофа");
     }
 

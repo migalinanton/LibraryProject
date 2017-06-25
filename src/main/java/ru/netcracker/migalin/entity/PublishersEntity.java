@@ -67,8 +67,13 @@ public class PublishersEntity {
         result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
+
     @Override
-    public String toString (){
-        return getFullname()+" "+getUrl();
+    public String toString() {
+        return "PublishersEntity{" +
+                "idpublishers=" + idpublishers +
+                ", fullname='" + fullname + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }
