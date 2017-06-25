@@ -8,8 +8,6 @@ import ru.netcracker.migalin.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.hibernate.query.Query;
-
 public class BookDAOImpl implements BookDAO {
 
     public void addBook(BooksEntity book) {

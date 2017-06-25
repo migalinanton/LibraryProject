@@ -12,9 +12,16 @@ public class PublishersEntity {
     private int idpublishers;
     private String fullname;
     private String url;
+    private Set<BooksEntity> booksEntities;
 
-    @Id
-    @Column(name = "idpublishers", nullable = false)
+    public Set<BooksEntity> getBooksEntities() {
+        return booksEntities;
+    }
+
+    public void setBooksEntities(Set<BooksEntity> booksEntities) {
+        this.booksEntities = booksEntities;
+    }
+
     public int getIdpublishers() {
         return idpublishers;
     }
@@ -23,8 +30,6 @@ public class PublishersEntity {
         this.idpublishers = idpublishers;
     }
 
-    @Basic
-    @Column(name = "fullname", nullable = true, length = 45)
     public String getFullname() {
         return fullname;
     }
@@ -33,8 +38,6 @@ public class PublishersEntity {
         this.fullname = fullname;
     }
 
-    @Basic
-    @Column(name = "URL", nullable = true, length = 45)
     public String getUrl() {
         return url;
     }

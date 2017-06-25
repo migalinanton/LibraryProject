@@ -12,11 +12,9 @@ public class BooksEntity {
     private String autor;
     private String title;
     private String year;
-    @Column(name = "publisher_id", insertable = false, updatable = false)
+
     private PublishersEntity publisher_id;
 
-    @Id
-    @Column(name = "idbooks", nullable = false)
     public int getIdbooks() {
         return idbooks;
     }
@@ -25,8 +23,6 @@ public class BooksEntity {
         this.idbooks = idbooks;
     }
 
-    @Basic
-    @Column(name = "autor", nullable = true, length = 45)
     public String getAutor() {
         return autor;
     }
@@ -35,8 +31,6 @@ public class BooksEntity {
         this.autor = autor;
     }
 
-    @Basic
-    @Column(name = "title", nullable = false, length = 45)
     public String getTitle() {
         return title;
     }
@@ -45,8 +39,6 @@ public class BooksEntity {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "year", nullable = true, length = 30)
     public String getYear() {
         return year;
     }
@@ -79,8 +71,6 @@ public class BooksEntity {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "publisher_id", referencedColumnName = "idpublishers")
     public PublishersEntity getPublisher_id() {
         return publisher_id;
     }

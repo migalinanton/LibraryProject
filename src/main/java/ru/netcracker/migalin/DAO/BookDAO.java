@@ -8,6 +8,5 @@ public interface BookDAO {
     void addBook(BooksEntity book);
     void deleteBook(int bookid);
     void updateBook(BooksEntity book);
-    List<BooksEntity> getAllBooks();
     BooksEntity getBookById(int bookid);
 }

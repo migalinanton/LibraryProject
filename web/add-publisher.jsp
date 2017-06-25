@@ -13,20 +13,19 @@
 <c:url var="saveUrl" value="addPublisher?id=${personId}" />
 <form modelAttribute="creditCardAttribute" method="POST" action="${saveUrl}">
     <table>
-
         <tr>
             <td>Person Id:</td>
             <td><input type="text" value="${personId}" disabled="true"/>
         </tr>
 
         <tr>
-            <td><form:label path="type">Type:</form:label></td>
-            <td><form:input path="type"/></td>
+            <td><label path="type">Type:</label></td>
+            <td><input path="type"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="number">Number:</form:label></td>
-            <td><form:input path="number"/></td>
+            <td><label path="number">Number:</label></td>
+            <td><input path="number"/></td>
         </tr>
     </table>
 

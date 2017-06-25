@@ -5,13 +5,19 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="<c:url value="css/style.css" />" />
     <title>Библиотека</title>
 </head>
 <body>
 <h1>Каталог книг</h1>
 <c:url var="editImgUrl" value="/resources/img/edit.png" />
 <c:url var="deleteImgUrl" value="/resources/img/delete.png" />
-<c:url var="addUrl" value="/resources/img/add.png" />
+<form>
+    <p><input type="search" name="text" placeholder="Поиск книг">
+        <input type="submit" value="Найти"></p>
+</form>
+<p><a href="/add-book.jsp">Create new book</a></p>
+<p><a href="/add-publisher.jsp">Create new publisher</a></p>
 <table style="border: 1px solid; width: 100%; text-align:center">
     <thead style="background:#d3dce3">
     <tr>
@@ -44,7 +50,6 @@
                     <c:url var="addCcUrl" value="/addBook?id=${books.idbooks}" />
                     <c:url var="editCcUrl" value="edit?pid=${books.idbooks}&cid=${books.publisher_id.idpublishers}" />
                     <c:url var="deleteCcUrl" value="delete?id=${books.publisher_id.idpublishers}" />
-                    <td><a href="${addCcUrl}">+</a></td>
                     <td><a href="${editCcUrl}"><img src="${editImgUrl}"></img></a></td>
                     <td><a href="${deleteCcUrl}"><img src="${deleteImgUrl}"></img></a></td>
                 </tr>
@@ -58,7 +63,7 @@
     No records found.
 </c:if>
 
-<p><a href="${addUrl}">Create new record</a></p>
+
 
 </body>
 </html>
