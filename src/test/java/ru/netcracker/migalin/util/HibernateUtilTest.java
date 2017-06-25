@@ -3,9 +3,7 @@ package ru.netcracker.migalin.util;
 import org.hibernate.Session;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import ru.netcracker.migalin.entity.BooksEntity;
-import ru.netcracker.migalin.entity.PublishersEntity;
 
 import java.util.List;
 

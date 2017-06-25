@@ -79,7 +79,7 @@ public class BooksEntity {
         return result;
     }
 
-    @ManyToOne(targetEntity = PublishersEntity.class, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "publisher_id", referencedColumnName = "idpublishers")
     public PublishersEntity getPublisher_id() {
         return publisher_id;
