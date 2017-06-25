@@ -9,23 +9,24 @@
 </head>
 <body>
 
-<h1>Create New Record</h1>
-<c:url var="saveUrl" value="/addBook" />
-<form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
+<h1>Add New Credit Card</h1>
+<c:url var="saveUrl" value="addPublisher?id=${personId}" />
+<form modelAttribute="creditCardAttribute" method="POST" action="${saveUrl}">
     <table>
+
         <tr>
-            <td><label path="firstName">First Name:</label></td>
-            <td><input name="firstName"/></td>
+            <td>Person Id:</td>
+            <td><input type="text" value="${personId}" disabled="true"/>
         </tr>
 
         <tr>
-            <td><label path="lastName">Last Name</label></td>
-            <td><input name="lastName"/></td>
+            <td><form:label path="type">Type:</form:label></td>
+            <td><form:input path="type"/></td>
         </tr>
 
         <tr>
-            <td><label path="money">Money</label></td>
-            <td><input name="money"/></td>
+            <td><form:label path="number">Number:</form:label></td>
+            <td><form:input path="number"/></td>
         </tr>
     </table>
 

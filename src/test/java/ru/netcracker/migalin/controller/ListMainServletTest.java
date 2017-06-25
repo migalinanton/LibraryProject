@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 /**
  * Created by user on 19.06.2017.
  */
-public class UserControllerServletTest {
+public class ListMainServletTest {
     @org.junit.Test
     public void addBook() throws Exception {
     }

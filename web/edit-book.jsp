@@ -9,23 +9,28 @@
 </head>
 <body>
 
-<h1>Create New Record</h1>
-<c:url var="saveUrl" value="/addBook" />
+<h1>Edit Existing Record</h1>
+<c:url var="saveUrl" value="/edit?id=${personAttribute.id}" />
 <form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
+            <td><label path="id">Id:</label></td>
+            <td><input path="id" disabled="true"/></td>
+        </tr>
+
+        <tr>
             <td><label path="firstName">First Name:</label></td>
-            <td><input name="firstName"/></td>
+            <td><input path="firstName"/></td>
         </tr>
 
         <tr>
             <td><label path="lastName">Last Name</label></td>
-            <td><input name="lastName"/></td>
+            <td><input path="lastName"/></td>
         </tr>
 
         <tr>
             <td><label path="money">Money</label></td>
-            <td><input name="money"/></td>
+            <td><input path="money"/></td>
         </tr>
     </table>
 
