@@ -34,12 +34,19 @@ public class PublisherDAOImpl implements PublisherDAO {
 
     @Override
     public void updatePublisher(PublishersEntity publishersEntity) {
-
+        Session session = HibernateUtil.getSession();
+        session.getTransaction().begin();
+        session.saveOrUpdate(publishersEntity);
+        session.getTransaction().commit();
     }
 
     @Override
-    public PublishersEntity getPublisherById(int bookid) {
-        return null;
+    public PublishersEntity getPublisherById(int publisherId) {
+        Session session = HibernateUtil.getSession();
+        session.getTransaction().begin();
+        PublishersEntity publishersEntity = (PublishersEntity) session.createQuery("from PublishersEntity where idpublishers = :id").setParameter("id", publisherId).uniqueResult();
+        session.getTransaction().commit();
+        return publishersEntity;
     }
 
     @Override
