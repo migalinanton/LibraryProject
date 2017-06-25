@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/list"})
@@ -23,8 +24,10 @@ public class UserControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BookDAOImpl bookDAO = new BookDAOImpl();
         List<BooksEntity> allBooks = bookDAO.getAllBooks();
-        req.setAttribute("books",allBooks);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+		String myObjectId = UUID.randomUUID().toString();
+		req.getSession().setAttribute(myObjectId, allBooks);
+		req.setAttribute("books", allBooks);
+		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 
 	@Override
