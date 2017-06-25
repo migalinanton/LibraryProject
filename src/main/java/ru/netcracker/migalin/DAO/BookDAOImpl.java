@@ -64,7 +64,7 @@ public class BookDAOImpl implements BookDAO {
         List<BooksEntity> books = null;
         try {
             session.beginTransaction();
-            books = session.createQuery("from BooksEntity b join fetch b.publisher_id").list();
+            books = session.createQuery("from BooksEntity b left join fetch b.publisher_id").list();
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             e.printStackTrace();

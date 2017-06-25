@@ -12,11 +12,42 @@
 <h1>Каталог книг</h1>
 <c:url var="editImgUrl" value="/resources/img/edit.png" />
 <c:url var="deleteImgUrl" value="/resources/img/delete.png" />
-<form>
+<form action = "/findBook" method = "POST">
     <p><input type="search" name="text" placeholder="Поиск книг">
         <input type="submit" value="Найти"></p>
 </form>
-<p><a href="/add-book.jsp">Create new book</a></p>
+<p><a href="/addBook">Create new book</a></p>
+<c:url var="saveUrl" value="/addBook"/>
+<c:if test="${!empty addBook}">
+<form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
+    <table>
+        <tr>
+            <td><label path="firstName">First Name:</label></td>
+            <td><input name="firstName"/></td>
+        </tr>
+        <tr>
+            <td><label path="lastName">Last Name</label></td>
+            <td><input name="lastName"/></td>
+        </tr>
+        <tr>
+            <td><label path="money">Money</label></td>
+            <td><input name="money"/></td>
+        </tr>
+        <tr>
+            <td><label path="money">Издательства</label></td>
+            <td>
+        <select name="publishers">
+            <c:forEach items="${addBook}" var="addBook">
+                <option value="${addBook.idpublishers}">${addBook.fullname}</option>
+            </c:forEach>
+        </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Save" />
+</form>
+</c:if>
+
 <p><a href="/add-publisher.jsp">Create new publisher</a></p>
 <table style="border: 1px solid; width: 100%; text-align:center">
     <thead style="background:#d3dce3">

@@ -50,6 +50,16 @@ public class PublisherDAOImpl implements PublisherDAO {
     }
 
     @Override
+    public List<PublishersEntity> getAllPublishers() {
+        Session session = HibernateUtil.getSession();
+        session.getTransaction().begin();
+        List<PublishersEntity> publishersEntity = session.createQuery("from PublishersEntity").list();
+        session.getTransaction().commit();
+        session.close();
+        return publishersEntity;
+    }
+
+    @Override
     public List<BooksEntity> searchBooks(String text) {
         Session session = HibernateUtil.getSession();
         List<BooksEntity> books = null;

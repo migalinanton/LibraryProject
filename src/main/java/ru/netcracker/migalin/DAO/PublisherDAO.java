@@ -10,5 +10,6 @@ public interface PublisherDAO {
     void deletePublisher(int bookid);
     void updatePublisher(PublishersEntity book);
     PublishersEntity getPublisherById(int bookid);
+    List<PublishersEntity> getAllPublishers();
     List<BooksEntity> searchBooks(String text);
 }

@@ -19,8 +19,6 @@ public class ListMainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BookDAOImpl bookDAO = new BookDAOImpl();
         List<BooksEntity> allBooks = bookDAO.getAllBooks();
-		String myObjectId = UUID.randomUUID().toString();
-		req.getSession().setAttribute(myObjectId, allBooks);
 		req.setAttribute("books", allBooks);
 		req.getRequestDispatcher("list.jsp").forward(req, resp);
 	}
