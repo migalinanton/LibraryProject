@@ -1,6 +1,7 @@
 package ru.netcracker.migalin.controller;
 import ru.netcracker.migalin.DAO.PublisherDAO;
 import ru.netcracker.migalin.DAO.PublisherDAOImpl;
+import ru.netcracker.migalin.entity.BooksEntity;
 import ru.netcracker.migalin.entity.PublishersEntity;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,8 @@ public class AddBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PublisherDAO publisherDAO = new PublisherDAOImpl();
         List<PublishersEntity> allPublishers = publisherDAO.getAllPublishers();
-        req.setAttribute("addBook", allPublishers);
+        req.setAttribute("addBook",new BooksEntity());
+        req.setAttribute("listPublishers", allPublishers);
         req.getRequestDispatcher("/list").forward(req, resp);
     }
 

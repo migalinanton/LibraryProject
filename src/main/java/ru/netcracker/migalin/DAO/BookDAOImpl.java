@@ -81,7 +81,7 @@ public class BookDAOImpl implements BookDAO {
         Session session = HibernateUtil.getSession();
         try {
             transaction = session.beginTransaction();
-            book = (BooksEntity) session.createQuery("from BooksEntity where idbooks = :id").setParameter("id",bookId).uniqueResult();
+            book = (BooksEntity) session.createQuery("from BooksEntity b join fetch b.publisher_id where b.idbooks = :id").setParameter("id",bookId).uniqueResult();
         } finally {
             session.close();
         }
