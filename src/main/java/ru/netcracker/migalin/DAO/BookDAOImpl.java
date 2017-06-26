@@ -20,6 +20,7 @@ public class BookDAOImpl implements BookDAO {
             if (transaction != null) {
                 transaction.rollback();
             }
+            System.out.println("Hello");
             e.printStackTrace();
         } finally {
             session.close();
