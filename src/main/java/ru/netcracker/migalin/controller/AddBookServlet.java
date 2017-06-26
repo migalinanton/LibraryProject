@@ -23,11 +23,4 @@ public class AddBookServlet extends HttpServlet {
         req.setAttribute("listPublishers", allPublishers);
         req.getRequestDispatcher("/list").forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response) throws ServletException, IOException {
-        String firstName = (String) request.getParameter("firstName");
-
-    }
 }

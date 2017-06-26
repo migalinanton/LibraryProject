@@ -9,7 +9,7 @@
     <title>Библиотека</title>
 </head>
 <br>
-<h1>Каталог книг</h1>
+<a href="/list"><h1>Каталог книг</h1></a>
 <c:url var="editImgUrl" value="/resources/img/edit.png" />
 <c:url var="deleteImgUrl" value="/resources/img/delete.png" />
 <c:url var="addImgUrl" value="/resources/img/add.png" />
