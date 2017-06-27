@@ -20,8 +20,13 @@ public class EditPublisherServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         PublisherDAO publisherDAO = new PublisherDAOImpl();
         String publisherId = req.getParameter("pid");
-        PublishersEntity publisherById = publisherDAO.getPublisherById(Integer.valueOf(publisherId));
-        req.setAttribute("addPublisher", publisherById);
+        PublishersEntity publisherById;
+        if (publisherId != null) {
+            publisherById = publisherDAO.getPublisherById(Integer.valueOf(publisherId));
+        } else {
+            publisherById = new PublishersEntity();
+        }
+        req.setAttribute("editPublisher", publisherById);
         req.getRequestDispatcher("/list").forward(req, resp);
     }
     @Override
@@ -33,7 +38,7 @@ public class EditPublisherServlet extends HttpServlet {
         PublisherDAOImpl publisherDAO = new PublisherDAOImpl();
         List<BooksEntity> booksEntities = publisherDAO.searchBooks(textToSearch);
         request.setAttribute("books", booksEntities);
-        request.getRequestDispatcher("jsp/main.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
 

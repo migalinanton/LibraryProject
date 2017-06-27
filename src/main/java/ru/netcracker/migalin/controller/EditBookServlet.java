@@ -23,9 +23,13 @@ public class EditBookServlet extends HttpServlet {
         BookDAO bookDAO = new BookDAOImpl();
         PublisherDAO publisherDAO = new PublisherDAOImpl();
         String id = req.getParameter("id");
-        BooksEntity bookById = bookDAO.getBookById(Integer.valueOf(id));
+        if (id != null) {
+            BooksEntity bookById = bookDAO.getBookById(Integer.valueOf(id));
+            req.setAttribute("editBook", bookById);
+        }else {
+            req.setAttribute("editBook", new BooksEntity());
+        }
         List<PublishersEntity> allPublishers = publisherDAO.getAllPublishers();
-        req.setAttribute("addBook", bookById);
         req.setAttribute("listPublishers",allPublishers);
         req.getRequestDispatcher("/list").forward(req, resp);
     }
@@ -38,6 +42,6 @@ public class EditBookServlet extends HttpServlet {
         String author = request.getParameter("author");
         PublisherDAOImpl publisherDAO = new PublisherDAOImpl();
         BookDAO bookDAO = new BookDAOImpl();
-        request.getRequestDispatcher("jsp/main.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

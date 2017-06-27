@@ -19,7 +19,7 @@ public class ListMainServlet extends HttpServlet {
 		BookDAOImpl bookDAO = new BookDAOImpl();
         List<BooksEntity> allBooks = bookDAO.getAllBooks();
 		req.setAttribute("books", allBooks);
-		req.getRequestDispatcher("main.jsp").forward(req, resp);
+		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 
 }
