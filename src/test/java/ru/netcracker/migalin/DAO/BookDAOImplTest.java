@@ -15,7 +15,7 @@ public class BookDAOImplTest {
         booksEntity.setTitle("World");
         booksEntity.setYear("1990");
         booksEntity.setPublisher_id(publisherDAO.getPublisherById(5));
-        bookDAO.addBook(booksEntity);
+     //   bookDAO.addBook(booksEntity);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class BookDAOImplTest {
         booksEntity.setTitle("World");
         booksEntity.setYear("1990");
         booksEntity.setPublisher_id(publisherDAO.getPublisherById(5));
-        bookDAO.updateBook(booksEntity);
+   //     bookDAO.updateBook(booksEntity);
     }
 
     @Test

@@ -32,8 +32,12 @@ public class EditBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        String firstName = (String) request.getParameter("firstName");
 
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+        String author = request.getParameter("author");
+        PublisherDAOImpl publisherDAO = new PublisherDAOImpl();
+        BookDAO bookDAO = new BookDAOImpl();
+        request.getRequestDispatcher("jsp/main.jsp").forward(request, response);
     }
 }
-

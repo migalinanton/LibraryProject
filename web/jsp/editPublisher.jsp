@@ -4,7 +4,7 @@
 <c:url var="addImgUrl" value="/resources/img/add.png"/>
 <p><a href="/addPublisher"><img src="${addImgUrl}"> Create new publisher</a></p>
 <c:if test="${!empty addPublisher}">
-    <c:url var="saveUrl" value="addPublisher?id=${personId}"/>
+    <c:url var="saveUrl" value="editPublisher?id=${personId}"/>
     <form modelAttribute="creditCardAttribute" method="POST" action="${saveUrl}">
         <table>
             <tr>

@@ -18,9 +18,10 @@ public class DeleteBookServlet extends HttpServlet {
             String id = req.getParameter("id");
             bookDAO.deleteBook(Integer.valueOf(id));
             req.setAttribute("message", "Book deleted success");
-            req.getRequestDispatcher("/list").forward(req, resp);
         } catch (Exception e) {
-            req.setAttribute("message", "Exception: " + e.getMessage());
+            req.setAttribute("message", e.getMessage());
+        }
+        finally {
             req.getRequestDispatcher("/list").forward(req, resp);
         }
     }

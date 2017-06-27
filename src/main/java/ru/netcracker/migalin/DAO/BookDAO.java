@@ -5,9 +5,8 @@ import ru.netcracker.migalin.entity.BooksEntity;
 import java.util.List;
 
 public interface BookDAO {
-    void addBook(BooksEntity book);
-    void deleteBook(int bookid);
-    void updateBook(BooksEntity book);
+    void editBook(BooksEntity book);
+    void deleteBook(int bookId);
     List<BooksEntity> getAllBooks();
-    BooksEntity getBookById(int bookid);
+    BooksEntity getBookById(int bookId);
 }

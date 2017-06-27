@@ -7,7 +7,6 @@
 <table style="border: 1px solid; width: 100%; text-align:center">
     <thead style="background:#bdc6cd">
     <tr>
-        <th>Id</th>
         <th>Автор</th>
         <th>Название книги</th>
         <th>Год</th>
@@ -24,7 +23,6 @@
 
         <c:if test="${!empty books}">
             <tr>
-                <td><c:out value="${books.idbooks}"/></td>
                 <td><c:out value="${books.autor}"/></td>
                 <td><c:out value="${books.title}"/></td>
                 <td><c:out value="${books.year}"/></td>
@@ -32,7 +30,7 @@
                 <td><a href="${deleteUrl}"><img src="${deleteImgUrl}"></img></a></td>
                 <td><c:out value="${books.publisher_id.fullname}"/></td>
                 <td><c:out value="${books.publisher_id.url}"/></td>
-                <c:url var="addCcUrl" value="/addBook?id=${books.idbooks}"/>
+                <c:url var="addCcUrl" value="/editBook?id=${books.idbooks}"/>
                 <c:url var="editCcUrl" value="/editPublisher?pid=${books.publisher_id.idpublishers}"/>
                 <c:url var="deleteCcUrl" value="/deletePublisher?pid=${books.publisher_id.idpublishers}"/>
                 <td><c:if test="${!empty books.publisher_id}"><a href="${editCcUrl}"><img src="${editImgUrl}"></a></c:if></td>

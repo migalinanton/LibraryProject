@@ -14,8 +14,8 @@ import java.io.IOException;
 public class DeletePublisherServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PublisherDAO publisherDAO = new PublisherDAOImpl();
-        String pid = req.getParameter("pid");
-        publisherDAO.deletePublisher(Integer.valueOf(pid));
+        String publisherId = req.getParameter("pid");
+        publisherDAO.deletePublisher(Integer.valueOf(publisherId));
         req.getRequestDispatcher("/list").forward(req, resp);
     }
 }

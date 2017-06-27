@@ -24,7 +24,7 @@ public class PublisherDAOImplTest {
         publishersEntity.setFullname("12345");
         publishersEntity.setUrl("1255163");
         publishersEntity.setIdpublishers(38);
-        publisherDAO.updatePublisher(publishersEntity);
+  //      publisherDAO.updatePublisher(publishersEntity);
     }
 
     @Test

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 
 @WebServlet(urlPatterns = {"/list"})
@@ -20,8 +19,7 @@ public class ListMainServlet extends HttpServlet {
 		BookDAOImpl bookDAO = new BookDAOImpl();
         List<BooksEntity> allBooks = bookDAO.getAllBooks();
 		req.setAttribute("books", allBooks);
-		//throw new ServletException("Test");
-		req.getRequestDispatcher("jsp/main.jsp").forward(req, resp);
+		req.getRequestDispatcher("main.jsp").forward(req, resp);
 	}
 
 }

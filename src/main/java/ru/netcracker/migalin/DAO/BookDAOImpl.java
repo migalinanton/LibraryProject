@@ -1,88 +1,69 @@
 package ru.netcracker.migalin.DAO;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import ru.netcracker.migalin.entity.BooksEntity;
 import ru.netcracker.migalin.util.HibernateUtil;
 
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
-    Transaction transaction = null;
 
-    public void addBook(BooksEntity book) {
+    public void editBook(BooksEntity book) {
         Session session = HibernateUtil.getSession();
-        try {
-            transaction = session.beginTransaction();
-            session.save(book);
-            session.getTransaction().commit();
-        } catch (RuntimeException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            System.out.println("Hello");
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
-    public void deleteBook(int bookid) {
-        Session session = HibernateUtil.getSession();
-        try {
-            transaction = session.beginTransaction();
-            BooksEntity user = (BooksEntity) session.load(BooksEntity.class, new Integer(bookid));
-            session.delete(user);
-            session.getTransaction().commit();
-        } catch (RuntimeException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } finally {
-            session.close();
-        }
-    }
-
-    public void updateBook(BooksEntity book) {
-        Session session = HibernateUtil.getSession();
-        try {
-            transaction = session.beginTransaction();
-            session.update(book);
-            session.getTransaction().commit();
-        } catch (RuntimeException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
-    public List<BooksEntity> getAllBooks() {
-        Session session = HibernateUtil.getSession();
-        List<BooksEntity> books = null;
         try {
             session.beginTransaction();
-            books = session.createQuery("from BooksEntity b left join fetch b.publisher_id").list();
+            session.saveOrUpdate(book);
             session.getTransaction().commit();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
+        } catch (HibernateException e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            throw new HibernateException("Error: The changes were not applied",e);
         } finally {
             session.close();
         }
+    }
 
+    public void deleteBook(int bookId) {
+        Session session = HibernateUtil.getSession();
+        try {
+            session.beginTransaction();
+            BooksEntity book = (BooksEntity) session.load(BooksEntity.class, bookId);
+            session.delete(book);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            throw new HibernateException("Error: The book was not deleted",e);
+        } finally {
+            session.close();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<BooksEntity> getAllBooks() {
+        Session session = HibernateUtil.getSession();
+        List<BooksEntity> books;
+        try {
+            session.beginTransaction();
+            books = (List<BooksEntity>)session.createQuery("from BooksEntity b left join fetch b.publisher_id").list();
+            session.getTransaction().commit();
+        }  finally {
+            session.close();
+        }
         return books;
     }
 
+    @SuppressWarnings("unchecked")
     public BooksEntity getBookById(int bookId) {
-        BooksEntity book = null;
+        BooksEntity book;
         Session session = HibernateUtil.getSession();
         try {
-            transaction = session.beginTransaction();
+            session.beginTransaction();
             book = (BooksEntity) session.createQuery("from BooksEntity b left join fetch b.publisher_id where b.idbooks = :id").setParameter("id",bookId).uniqueResult();
+            session.getTransaction().commit();
         } finally {
             session.close();
         }

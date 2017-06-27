@@ -3,7 +3,7 @@
          pageEncoding="UTF-8" %>
 <c:url var="addImgUrl" value="/resources/img/add.png"/>
 <p><a href="/addBook"><img src="${addImgUrl}"> Create new book</a></p>
-<c:url var="saveUrl" value="/addBook"/>
+<c:url var="saveUrl" value="/editBook"/>
 <c:if test="${!empty addBook}">
     <form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
         <table>
@@ -26,7 +26,7 @@
             <tr>
                 <td><label path="publisher">Издательство:</label></td>
                 <td>
-                    <select name="publishers">
+                    <select name="publisher">
                         <c:forEach items="${listPublishers}" var="publisher">
                             <option value="${publisher.idpublishers}"
                                     <c:if test="${publisher.idpublishers==addBook.publisher_id.idpublishers&&(!empty addBook.publisher_id)}">selected</c:if>>
