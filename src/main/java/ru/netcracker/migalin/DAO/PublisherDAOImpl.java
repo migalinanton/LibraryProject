@@ -64,8 +64,13 @@ public class PublisherDAOImpl implements PublisherDAO {
         Session session = HibernateUtil.getSession();
         List<BooksEntity> books = null;
         try {
+            text= text
+                    .replace("!", "!!")
+                    .replace("%", "!%")
+                    .replace("_", "!_")
+                    .replace("[", "![");
             session.beginTransaction();
-            books = session.createQuery("from BooksEntity b join fetch b.publisher_id where b.publisher_id.fullname like '%"+text+"%'").list();
+            books = session.createQuery("from BooksEntity b join fetch b.publisher_id where b.publisher_id.fullname like :text").setParameter("text","%"+text+"%").list();
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             e.printStackTrace();

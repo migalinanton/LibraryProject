@@ -17,8 +17,8 @@
         <property name="year">
             <column name="year" sql-type="varchar(30)" length="30" not-null="true"/>
         </property>
-        <many-to-one name="publisher_id" class="ru.netcracker.migalin.entity.PublishersEntity">
-            <column name="publisher_id" not-null="true" />
+        <many-to-one name="publisher_id" class="ru.netcracker.migalin.entity.PublishersEntity" >
+            <column name="publisher_id" not-null="false" />
         </many-to-one>
     </class>
 </hibernate-mapping>

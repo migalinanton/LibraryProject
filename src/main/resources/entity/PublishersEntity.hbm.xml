@@ -14,11 +14,11 @@
         <property name="url">
             <column name="URL" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
-        <set name="booksEntities" cascade="delete" >
+        <set name="booksEntities" >
         <key>
-            <column name="publisher_id" not-null="true" />
+            <column name="publisher_id" not-null="false"  />
         </key>
-        <one-to-many class="ru.netcracker.migalin.entity.BooksEntity" />
+        <one-to-many class="ru.netcracker.migalin.entity.BooksEntity"/>
     </set>
            </class>
 

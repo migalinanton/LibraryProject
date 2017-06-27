@@ -22,6 +22,6 @@ public class FindBookServlet extends HttpServlet {
         PublisherDAOImpl publisherDAO = new PublisherDAOImpl();
         List<BooksEntity> booksEntities = publisherDAO.searchBooks(textToSearch);
         request.setAttribute("books", booksEntities);
-        request.getRequestDispatcher("list.jsp").forward(request, response);
+        request.getRequestDispatcher("jsp/main.jsp").forward(request, response);
     }
 }

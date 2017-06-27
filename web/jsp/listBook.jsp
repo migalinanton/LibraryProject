@@ -22,7 +22,7 @@
         <c:url var="editUrl" value="/editBook?id=${books.idbooks}"/>
         <c:url var="deleteUrl" value="/deleteBook?id=${books.idbooks}"/>
 
-        <c:if test="${!empty books.publisher_id}">
+        <c:if test="${!empty books}">
             <tr>
                 <td><c:out value="${books.idbooks}"/></td>
                 <td><c:out value="${books.autor}"/></td>
@@ -35,8 +35,8 @@
                 <c:url var="addCcUrl" value="/addBook?id=${books.idbooks}"/>
                 <c:url var="editCcUrl" value="/editPublisher?pid=${books.publisher_id.idpublishers}"/>
                 <c:url var="deleteCcUrl" value="/deletePublisher?pid=${books.publisher_id.idpublishers}"/>
-                <td><a href="${editCcUrl}"><img src="${editImgUrl}"></img></a></td>
-                <td><a href="${deleteCcUrl}"><img src="${deleteImgUrl}"></img></a></td>
+                <td><c:if test="${!empty books.publisher_id}"><a href="${editCcUrl}"><img src="${editImgUrl}"></a></c:if></td>
+                <td><c:if test="${!empty books.publisher_id}"><a href="${deleteCcUrl}"><img src="${deleteImgUrl}"></a></c:if></td>
             </tr>
         </c:if>
     </c:forEach>

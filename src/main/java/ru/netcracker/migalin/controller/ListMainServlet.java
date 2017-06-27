@@ -21,7 +21,7 @@ public class ListMainServlet extends HttpServlet {
         List<BooksEntity> allBooks = bookDAO.getAllBooks();
 		req.setAttribute("books", allBooks);
 		//throw new ServletException("Test");
-		req.getRequestDispatcher("list.jsp").forward(req, resp);
+		req.getRequestDispatcher("jsp/main.jsp").forward(req, resp);
 	}
 
 }
