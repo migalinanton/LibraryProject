@@ -11,8 +11,20 @@ import java.util.List;
 
 public class PublisherDAOImpl implements PublisherDAO {
 
-    public void editPublisher(BooksEntity book) {
-
+    public void editPublisher(PublishersEntity publisher) {
+        Session session = HibernateUtil.getSession();
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(publisher);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            throw new HibernateException("Error: The changes were not applied ",e);
+        } finally {
+            session.close();
+        }
     }
 
     public void deletePublisher(int publisherId) {

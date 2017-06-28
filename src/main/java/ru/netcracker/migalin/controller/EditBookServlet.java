@@ -36,12 +36,18 @@ public class EditBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
-        String id = request.getParameter("id");
-        String author = request.getParameter("author");
-        PublisherDAOImpl publisherDAO = new PublisherDAOImpl();
+        PublisherDAO publisherDAO = new PublisherDAOImpl();
         BookDAO bookDAO = new BookDAOImpl();
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        PublishersEntity publishersEntity = null;
+        String bookId = request.getParameter("id");
+        String author = request.getParameter("author");
+        String title = request.getParameter("title");
+        String year = request.getParameter("year");
+        String publisherId = request.getParameter("publisher");
+        if (!publisherId.equals("null")) publishersEntity = publisherDAO.getPublisherById(Integer.valueOf(publisherId));
+        BooksEntity booksEntity = new BooksEntity(Integer.valueOf(bookId),author,title,year,publishersEntity);
+        bookDAO.editBook(booksEntity);
+        response.sendRedirect("/list");
     }
 }

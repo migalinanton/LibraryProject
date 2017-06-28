@@ -1,4 +1,6 @@
 package ru.netcracker.migalin.controller;
+import ru.netcracker.migalin.DAO.BookDAO;
+import ru.netcracker.migalin.DAO.BookDAOImpl;
 import ru.netcracker.migalin.DAO.PublisherDAO;
 import ru.netcracker.migalin.DAO.PublisherDAOImpl;
 import ru.netcracker.migalin.entity.BooksEntity;
@@ -33,12 +35,13 @@ public class EditPublisherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String textToSearch = request.getParameter("text");
-        System.out.println();
-        PublisherDAOImpl publisherDAO = new PublisherDAOImpl();
-        List<BooksEntity> booksEntities = publisherDAO.searchBooks(textToSearch);
-        request.setAttribute("books", booksEntities);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        PublisherDAO publisherDAO = new PublisherDAOImpl();
+        String publisherId = request.getParameter("id");
+        String fullName = request.getParameter("fullName");
+        String url = request.getParameter("url");
+        PublishersEntity publishersEntity = new PublishersEntity(Integer.valueOf(publisherId),fullName,url);
+        publisherDAO.editPublisher(publishersEntity);
+        response.sendRedirect("/list");
     }
 }
 

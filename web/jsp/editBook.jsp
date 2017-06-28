@@ -6,6 +6,7 @@
 <c:url var="saveUrl" value="/editBook"/>
 <c:if test="${!empty editBook}">
     <form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
+        <input type="hidden" name="id" value="${editBook.idbooks}" />
         <table>
             <tr>
                 <td><label path="author">Автор:</label></td>

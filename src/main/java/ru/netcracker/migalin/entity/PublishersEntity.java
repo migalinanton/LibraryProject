@@ -76,4 +76,11 @@ public class PublishersEntity {
                 ", url='" + url + '\'' +
                 '}';
     }
+    public PublishersEntity (){
+    }
+    public PublishersEntity (int publisherId,String fullName, String url){
+        if (publisherId>0) setIdpublishers(publisherId);
+        setFullname(fullName);
+        setUrl(url);
+    }
 }

@@ -12,7 +12,6 @@ public class BooksEntity {
     private String autor;
     private String title;
     private String year;
-
     private PublishersEntity publisher_id;
 
     public int getIdbooks() {
@@ -87,5 +86,16 @@ public class BooksEntity {
 
     public void setPublisher_id(PublishersEntity publisher_id) {
         this.publisher_id = publisher_id;
+    }
+
+    public BooksEntity(){
+    }
+
+    public BooksEntity (int id,String author,String title,String year,PublishersEntity publishersEntity){
+        if (id>0) setIdbooks(id);
+        setAutor(author);
+        setTitle(title);
+        setYear(year);
+        setPublisher_id(publishersEntity);
     }
 }

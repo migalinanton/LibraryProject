@@ -6,7 +6,7 @@ import ru.netcracker.migalin.entity.PublishersEntity;
 import java.util.List;
 
 public interface PublisherDAO {
-    void editPublisher(BooksEntity book);
+    void editPublisher(PublishersEntity book);
     void deletePublisher(int bookId);
     PublishersEntity getPublisherById(int bookId);
     List<PublishersEntity> getAllPublishers();

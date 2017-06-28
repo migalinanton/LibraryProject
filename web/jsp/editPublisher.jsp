@@ -6,14 +6,15 @@
 <c:if test="${!empty editPublisher}">
     <c:url var="saveUrl" value="editPublisher?id=${editPublisher.idpublishers}"/>
     <form modelAttribute="creditCardAttribute" method="POST" action="${saveUrl}">
+        <input type="hidden" name="id" value="${editPublisher.idpublishers}" />
         <table>
             <tr>
                 <td><label path="type">Название:</label></td>
-                <td><input path="type" value="${editPublisher.fullname}"/></td>
+                <td><input path="type" name = "fullName" value="${editPublisher.fullname}"/></td>
             </tr>
             <tr>
                 <td><label path="number">URL:</label></td>
-                <td><input path="number" value="${editPublisher.url}"/></td>
+                <td><input path="type" name="url" value="${editPublisher.url}"/></td>
             </tr>
         </table>
         <input type="submit" value="Save"/>
