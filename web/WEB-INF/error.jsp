@@ -8,13 +8,3 @@
         window.location = "/list";
     }
 </script>
-
-StackTrace:
-<%
-	StringWriter stringWriter = new StringWriter();
-	PrintWriter printWriter = new PrintWriter(stringWriter);
-	exception.printStackTrace(printWriter);
-	out.println(stringWriter);
-	printWriter.close();
-	stringWriter.close();
-%>
