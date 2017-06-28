@@ -5,6 +5,7 @@ import ru.netcracker.migalin.DAO.PublisherDAO;
 import ru.netcracker.migalin.DAO.PublisherDAOImpl;
 import ru.netcracker.migalin.entity.BooksEntity;
 import ru.netcracker.migalin.entity.PublishersEntity;
+import ru.netcracker.migalin.util.Util;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +46,7 @@ public class EditBookServlet extends HttpServlet {
         String title = request.getParameter("title");
         String year = request.getParameter("year");
         String publisherId = request.getParameter("publisher");
+        Util.checkInputParameter(author,title);
         if (!publisherId.equals("null")) publishersEntity = publisherDAO.getPublisherById(Integer.valueOf(publisherId));
         BooksEntity booksEntity = new BooksEntity(Integer.valueOf(bookId),author,title,year,publishersEntity);
         bookDAO.editBook(booksEntity);

@@ -17,11 +17,11 @@ public class PublisherDAOImpl implements PublisherDAO {
             session.beginTransaction();
             session.saveOrUpdate(publisher);
             session.getTransaction().commit();
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            throw new HibernateException("Error: The changes were not applied ",e);
+            throw e;
         } finally {
             session.close();
         }
@@ -39,7 +39,7 @@ public class PublisherDAOImpl implements PublisherDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            throw new HibernateException("Error: The publisher was not deleted",e);
+            throw e;
         }finally {
             session.close();
         }

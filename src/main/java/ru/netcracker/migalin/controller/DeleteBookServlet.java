@@ -13,17 +13,9 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/deleteBook"})
 public class DeleteBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
             BookDAO bookDAO = new BookDAOImpl();
             String id = req.getParameter("id");
             bookDAO.deleteBook(Integer.valueOf(id));
-            req.setAttribute("message", "Book deleted success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("message", e.getMessage());
-        }
-        finally {
             req.getRequestDispatcher("/list").forward(req, resp);
-        }
     }
 }

@@ -1,7 +1,13 @@
-<%@ page isErrorPage="true" import="java.io.*" contentType="text/plain"%>
+<%@ page isErrorPage="true" import="java.io.*"%>
 
-Message:
-<%=exception.getMessage()%>
+<% String message = exception.getMessage();%>
+<script type="text/javascript">
+    var msg = "<%=message%>";
+    if (msg!="null") {
+        alert(msg);
+        window.location = "/list";
+    }
+</script>
 
 StackTrace:
 <%

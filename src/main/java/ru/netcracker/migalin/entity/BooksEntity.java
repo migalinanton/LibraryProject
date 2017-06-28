@@ -2,9 +2,6 @@ package ru.netcracker.migalin.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by Антон on 20.06.2017.
- */
 @Entity
 @Table(name = "books", schema = "library")
 public class BooksEntity {

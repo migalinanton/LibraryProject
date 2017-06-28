@@ -19,7 +19,7 @@ public class BookDAOImpl implements BookDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            throw new HibernateException("Error: The changes were not applied",e);
+            throw e;
         } finally {
             session.close();
         }
@@ -36,7 +36,7 @@ public class BookDAOImpl implements BookDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            throw new HibernateException("Error: The book was not deleted",e);
+            throw e;
         } finally {
             session.close();
         }

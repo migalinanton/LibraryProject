@@ -21,8 +21,5 @@ public class ListMainServlet extends HttpServlet {
 		req.setAttribute("books", allBooks);
 		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("index.jsp").forward(req, resp);
-	}
 
 }

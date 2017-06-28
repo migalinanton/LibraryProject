@@ -8,13 +8,6 @@
     <link type="text/css" rel="stylesheet" href="<c:url value="css/style.css" />"/>
     <title>Библиотека</title>
 </head>
-<% String message = (String)request.getAttribute("message");%>
-<script type="text/javascript">
-    var msg = "<%=message%>";
-    if (msg!="null") {
-        alert(msg);
-    }
-</script>
 
 <a href="/list"><h1>Каталог книг</h1></a>
 

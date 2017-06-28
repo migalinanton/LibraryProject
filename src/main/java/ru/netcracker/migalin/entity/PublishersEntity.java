@@ -1,11 +1,9 @@
 package ru.netcracker.migalin.entity;
 
+import ru.netcracker.migalin.DAO.PublisherDAOImpl;
+
 import javax.persistence.*;
 import java.util.Set;
-
-/**
- * Created by Антон on 20.06.2017.
- */
 @Entity
 @Table(name = "publishers", schema = "library")
 public class PublishersEntity {
@@ -79,7 +77,11 @@ public class PublishersEntity {
     public PublishersEntity (){
     }
     public PublishersEntity (int publisherId,String fullName, String url){
-        if (publisherId>0) setIdpublishers(publisherId);
+        if (publisherId>0)
+        {
+            setIdpublishers(publisherId);
+            setBooksEntities(new PublisherDAOImpl().getPublisherById(publisherId).getBooksEntities());
+        }
         setFullname(fullName);
         setUrl(url);
     }
